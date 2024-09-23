@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ContactAppFinal.Models.Contact>
+
+<h2>Contact List</h2>
+
+<div id="contactListContainer">
+    @Html.Partial("_ContactList", Model)
+
+</div>
+
+
+<div id="contactModal" style="display: none;"></div>
+
+<script src="~/Scripts/staff-operations.js"></script>
+<script>
+    contactList()
+</script>

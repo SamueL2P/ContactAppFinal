@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ContactAppFinal.Models.User>
+
+@{
+    ViewBag.Title = "Users";
+}
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<h2>Users List</h2>
+
+<div class="container" id="userList">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                <th>@Html.DisplayNameFor(model => model.FName)</th>
+                <th>@Html.DisplayNameFor(model => model.LName)</th>
+                <th>@Html.DisplayNameFor(model => model.IsActive)</th>
+                <th>@Html.DisplayNameFor(model => model.IsAdmin)</th>
+
+            </tr>
+        </thead>
+        <tbody id="tblBody">
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.UserName</td>
+                    <td>@user.FName</td>
+                    <td>@user.LName</td>
+                    <td>
+                        <input type="checkbox" class="toggle-active" data-id="@user.Id" @(user.IsActive ? "checked" : "") />
+                    </td>
+                    <td>
+                        <input type="checkbox" class="toggle-admin" data-id="@user.Id" @(user.IsAdmin ? "checked" : "") />
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Admin", new { id = user.Id })" class="btn btn-primary">Edit</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script src="~/Scripts/jquery-3.7.1.min.js"></script>
+<script src="~/Scripts/Crud.js"></script>
+

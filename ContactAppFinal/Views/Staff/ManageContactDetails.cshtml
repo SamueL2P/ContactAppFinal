@@ -1,0 +1,18 @@
+﻿@model IEnumerable<ContactAppFinal.Models.ContactDetail>
+@{
+    ViewBag.Title = "Manage Contact Details";
+}
+
+<h2>Manage Contact Details</h2>
+<input type="hidden" id="contactId" value="@ViewBag.ContactId" />
+<div id="contactDetailsList">
+    <table id="grid"></table>
+    <div id="pager"></div>
+</div>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css">
+<script src="~/Scripts/ContactDetailsGrid.js"></script>
+
+<script>
+    
+    var contactId = '@ViewBag.ContactId';
+</script>

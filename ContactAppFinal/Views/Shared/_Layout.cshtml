@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="~/Scripts/i18n/grid.locale-en.js"></script>
+    <script src="~/Scripts/jquery.jqGrid.min.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse bg-dark color-light  navbar-fixed-top">
+        <div class="container">
+            <div  class="navbar-header">
+               
+                @Html.ActionLink("ContactApp", "Login", "User", new { area = "" }, new { @class = "navbar-brand"})
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <span style="color:white">Welcome @User.Identity.Name</span>
+
+                    if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("ViewAdmins", "ViewAdmins", "Admin")
+                    }
+                    @Html.ActionLink("Logout", "Logout", "User");
+                }
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>
