@@ -4,40 +4,37 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<h2 class="text-center mt-4">Login</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>LoginVM</h4>
+
+    <div class="form-horizontal bg-light p-4 rounded shadow-sm" style="max-width: 300px; margin: 0 auto;">
+        <h6 class="mb-3 text-center ">Please enter your credentials</h6>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+
+        <div class="form-group row mb-3 ">
+            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label pt-1 " })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "Username" } })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+        <div class="form-group row mb-3">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label pt-1 " })
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password", type = "password" } })
                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
+        <div class="form-group row">
+            <div class="col-md-8 offset-md-2">
+                <input type="submit" value="Login" class="btn btn-primary w-100" />
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>

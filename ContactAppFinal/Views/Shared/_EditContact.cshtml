@@ -1,9 +1,20 @@
 ﻿@model ContactAppFinal.Models.Contact
 
-<h3>Edit Contact</h3>
-<form id="editContactForm">
-    <input type="hidden" id="ContactId" value="@Model.ContactId" />
-    <input type="text" id="FName" name="FName" value="@Model.FName" />
-    <input type="text" id="LName" name="LName" value="@Model.LName" />
-    <button type="submit">Update</button>
+
+
+<form id="editContactForm" class="container bg-light p-4 rounded shadow-sm" style="max-width: 500px;">
+    <h4 class="mb-4 text-center">Edit Contact</h4>
+    <input type="hidden" id="ContactId" name="ContactId" value="@Model.ContactId" />
+
+    <div class="mb-3">
+        <label for="FName" class="form-label">First Name</label>
+        <input type="text" id="FName" name="FName" value="@Model.FName" class="form-control" placeholder="Enter First Name" />
+    </div>
+
+    <div class="mb-3">
+        <label for="LName" class="form-label">Last Name</label>
+        <input type="text" id="LName" name="LName" value="@Model.LName" class="form-control" placeholder="Enter Last Name" />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-20% m-lg-2">Update</button>
 </form>

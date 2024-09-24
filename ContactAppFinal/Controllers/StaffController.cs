@@ -72,7 +72,7 @@ namespace ContactAppFinal.Controllers
                 var contact = session.Get<Contact>(contactId);
                 if(contact.IsActive == false)
                 {
-                    return Json(new { success = false, message = "Contact not Active" });
+                    return Json(new { success = false, message = "Contact not Active" }, JsonRequestBehavior.AllowGet);
                 }
                 return PartialView("_EditContact", contact);
             }
@@ -88,7 +88,7 @@ namespace ContactAppFinal.Controllers
                     var existingContact = session.Get<Contact>(contact.ContactId);
                     if (existingContact == null)
                     {
-                        return Json(new { success = false, message = "Contact not found." });
+                        return Json(new { success = false, message = "Contact not found." }, JsonRequestBehavior.AllowGet);
                     }
 
                     existingContact.FName = contact.FName;
@@ -96,7 +96,7 @@ namespace ContactAppFinal.Controllers
                     existingContact.IsActive = contact.IsActive;
                     session.Update(existingContact);
                     transaction.Commit();
-                    return Json(new { success = true, message = "Contact updated successfully!" });
+                    return Json(new { success = true, message = "Contact updated successfully!" }, JsonRequestBehavior.AllowGet);
                 }
             }
         }
@@ -112,7 +112,10 @@ namespace ContactAppFinal.Controllers
                 {
                     return Json(new { success = false, message = "Contact not found." });
                 }
-
+                if (!contact.IsActive)
+                {
+                    return Json(new { success = false, message = "Contact Already InActive" });
+                }
                 using (var transaction = session.BeginTransaction())
                 {
                     contact.IsActive = false;
@@ -266,6 +269,27 @@ namespace ContactAppFinal.Controllers
             }
         }
 
+        [HttpPost]
+        public JsonResult ToggleIsActive(Guid contactId, bool isActive)
+        {
+            using (var session = NHibernateHelper.CreateSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var contact = session.Get<Contact>(contactId);
+                    if (contact == null)
+                    {
+                        return Json(new { success = false, message = "Contact not found." });
+                    }
+
+                    contact.IsActive = isActive;
+                    session.Update(contact);
+                    transaction.Commit();
+
+                    return Json(new { success = true, message = "Contact status updated successfully!" });
+                }
+            }
+        }
 
 
     }

@@ -1,8 +1,18 @@
 ﻿@model ContactAppFinal.Models.Contact
 
-<h3>Create Contact</h3>
-<form id="createContactForm">
-    <input type="text" id="FName" name="FName" placeholder="First Name" />
-    <input type="text" id="LName" name="LName" placeholder="Last Name" />
-    <button type="submit">Create</button>
+
+
+<form id="createContactForm" class="container bg-light p-4 rounded shadow-sm" style="max-width: 500px;">
+    <h3 class="mb-4 text-center">Create Contact</h3>
+    <div class="mb-3">
+        <label for="FName" class="form-label">First Name</label>
+        <input type="text" id="FName" name="FName" class="form-control" placeholder="Enter First Name" />
+    </div>
+
+    <div class="mb-3">
+        <label for="LName" class="form-label">Last Name</label>
+        <input type="text" id="LName" name="LName" class="form-control" placeholder="Enter Last Name" />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-20% m-lg-2">Create</button>
 </form>

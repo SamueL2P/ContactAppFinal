@@ -5,16 +5,15 @@
 }
 @if (TempData["ErrorMessage"] != null)
 {
-    <div class="alert alert-danger">
+    <div style="margin-top:10px" class="alert alert-danger">
         @TempData["ErrorMessage"]
     </div>
 }
 
 
-<h2>ViewAdmins</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
+<h4 class="m-lg-2">Admins</h4>
+<p style="margin-left:6px; margin-top:5px;">
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
 </p>
 <table class="table">
     <tr>

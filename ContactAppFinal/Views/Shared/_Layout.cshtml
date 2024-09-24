@@ -15,20 +15,20 @@
     <script src="~/Scripts/jquery.jqGrid.min.js"></script>
 </head>
 <body>
-    <div class="navbar navbar-inverse bg-dark color-light  navbar-fixed-top">
+    <div class="navbar navbar-inverse bg-dark color-light navbar-fixed-top">
         <div class="container">
-            <div  class="navbar-header">
-               
-                @Html.ActionLink("ContactApp", "Login", "User", new { area = "" }, new { @class = "navbar-brand"})
+            <div class="navbar-header">
+                @Html.ActionLink("ContactApp", "Login", "User", new { area = "" }, new { @class = "navbar-brand", style = "color:white; text-decoration:none;" })
+
                 @if (User.Identity.IsAuthenticated)
                 {
                     <span style="color:white">Welcome @User.Identity.Name</span>
 
                     if (User.IsInRole("Admin"))
                     {
-                        @Html.ActionLink("ViewAdmins", "ViewAdmins", "Admin")
+                        @Html.ActionLink("ViewAdmins", "ViewAdmins", "Admin", null, new { style = "color:black; background-color:white; padding:5px; border-radius:4px; text-decoration:none;"  })
                     }
-                    @Html.ActionLink("Logout", "Logout", "User");
+                    @Html.ActionLink("Logout", "Logout", "User", null, new { style = "color:red; text-decoration:none; margin-left:700px" });
                 }
             </div>
             <div class="navbar-collapse collapse">
@@ -38,11 +38,13 @@
         </div>
     </div>
 
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>Developed by Samuel :)</p>
         </footer>
     </div>
 

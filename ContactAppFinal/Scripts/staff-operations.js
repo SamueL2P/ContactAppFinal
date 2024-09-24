@@ -26,6 +26,25 @@
             }
         });
     });
+    $('#contactListContainer').on('change', '.isActiveToggle', function () {
+        let contactId = $(this).data('id');
+        let isActive = $(this).is(':checked');
+
+        $.ajax({
+            url: '/Staff/ToggleIsActive',
+            type: 'POST',
+            data: JSON.stringify({ contactId: contactId, isActive: isActive }),
+            contentType: 'application/json',
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                    loadContacts();
+                } else {
+                    alert(response.message);
+                }
+            }
+        });
+    });
 
   
     $('#contactModal').on('submit', '#editContactForm', function (e) {
@@ -96,12 +115,18 @@ function editContact(contactId) {
         url: '/Staff/EditContact',
         type: 'GET',
         data: { contactId: contactId },
-        success: function (data) {
-            $('#contactListContainer').hide(); 
-            $('#contactModal').html(data);
-            $('#contactModal').show();
-            loadContacts();
+        success: function (response) {
+            if (response.success === false) {
+                alert(response.message); 
+            } else {
+                $('#contactListContainer').hide();
+                $('#contactModal').html(response);
+                $('#contactModal').show();
+                loadContacts();
+            }
+
         }
+        
     });
 }
 
@@ -133,7 +158,7 @@ function deleteContact(contactId) {
 $.ajax({
     url: '/Staff/GetContactList',
     type: 'GET',
-    data: { userId: userId }, 
+    data: { userId: userId },   
     success: function (data) {
         $('#contactListContainer').html(data);
         $('#contactListContainer').show(); 
