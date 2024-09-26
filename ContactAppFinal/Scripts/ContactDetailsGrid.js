@@ -7,7 +7,7 @@
         url: '/Staff/GetData?contactId=' + contactId,
         mtype: "GET",
         datatype: "json",
-        colNames: ["ContactDetailId", "Type", "Value"],
+        colNames: ["ContactDetailId", "Type", "Value"], 
         colModel: [
             { name: "ContactDetailId", key: true, hidden: true, editable: true },
             { name: "Type", editable: true, searchoptions: { sopt: ['eq'] } },

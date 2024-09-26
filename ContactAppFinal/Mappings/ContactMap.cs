@@ -15,6 +15,10 @@ namespace ContactAppFinal.Mappings
             Map(c => c.FName);
             Map(c => c.LName);
             Map(c => c.IsActive);
+            References(x => x.User) // Ensure this mapping is present
+     .Column("UserId")
+     .Not.Nullable();
+
             HasMany(u => u.ContactDetail).Inverse().Cascade.All();
             
         }

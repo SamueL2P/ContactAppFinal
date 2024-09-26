@@ -18,7 +18,7 @@ namespace ContactAppFinal.Mappings
             Map(u => u.LName);
             Map(u => u.IsAdmin);
             Map(u => u.IsActive);
-            HasOne(u => u.Role).PropertyRef(u => u.User).Cascade.All().Constrained();
+            HasOne(u => u.Role).PropertyRef(u => u.User).Cascade.All();
             HasMany(u => u.Contact).Inverse().Cascade.All();
         }
     }
